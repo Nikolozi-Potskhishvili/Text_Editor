@@ -8,6 +8,8 @@ public class MenuBar extends JMenuBar {
     public MenuBar() {
         setBackground(Color.DARK_GRAY);
         createFileMenu();
+        createMainMenu();
+        createViewMenu();
     }
 
     private void createFileMenu() {
@@ -35,10 +37,14 @@ public class MenuBar extends JMenuBar {
     }
 
     private void createMainMenu() {
-
+        JMenu fileMenu = new JMenu("Main");
+        fileMenu.setForeground(Color.WHITE);
+        add(fileMenu);
     }
 
     private void createViewMenu() {
-
+        JMenu fileMenu = new JMenu("View");
+        fileMenu.setForeground(Color.WHITE);
+        add(fileMenu);
     }
 }
