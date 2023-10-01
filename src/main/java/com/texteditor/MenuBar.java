@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MenuBar extends JMenuBar {
-
-    public MenuBar() {
+    private TextEditorFrame frame;
+    public MenuBar(TextEditorFrame frame) {
+        this.frame = frame;
         setBackground(Color.DARK_GRAY);
         createFileMenu();
-        createMainMenu();
-        createViewMenu();
+        createEditMenu();
+        createFormatMenu();
     }
 
     private void createFileMenu() {
@@ -19,10 +20,10 @@ public class MenuBar extends JMenuBar {
 
         JMenuItem newMenuItem = new JMenuItem("New");
         JMenuItem openMenuItem = new JMenuItem("Open");
-        JMenuItem saveMenuItem = new JMenuItem("Save");
+        JMenuItem saveMenuItem = new JMenuItem("Save as");
         JMenuItem exitMenuItem = new JMenuItem("Exit");
 
-        FileMenuListener fileMenuListener = new FileMenuListener();
+        FileMenuListener fileMenuListener = new FileMenuListener(frame);
 
         newMenuItem.addActionListener(fileMenuListener);
         openMenuItem.addActionListener(fileMenuListener);
@@ -36,15 +37,22 @@ public class MenuBar extends JMenuBar {
         fileMenu.add(exitMenuItem);
     }
 
-    private void createMainMenu() {
-        JMenu fileMenu = new JMenu("Main");
-        fileMenu.setForeground(Color.WHITE);
-        add(fileMenu);
+    private void createEditMenu() {
+        JMenu editMenu = new JMenu("Edit");
+        editMenu.setForeground(Color.WHITE);
+        add(editMenu);
+
     }
 
-    private void createViewMenu() {
-        JMenu fileMenu = new JMenu("View");
-        fileMenu.setForeground(Color.WHITE);
-        add(fileMenu);
+    private void createFormatMenu() {
+        JMenu formatMenu = new JMenu("Format");
+        formatMenu.setForeground(Color.WHITE);
+        add(formatMenu);
+
+        FileMenuListener fileMenuListener = new FileMenuListener(frame);
+
+        JMenuItem font = new JMenuItem("Font");
+        font.addActionListener(fileMenuListener);
+        formatMenu.add(font);
     }
 }

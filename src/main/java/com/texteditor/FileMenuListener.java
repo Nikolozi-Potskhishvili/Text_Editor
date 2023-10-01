@@ -6,25 +6,40 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 public class FileMenuListener implements ActionListener {
+    private FontChooser fontChooser;
+    private TextEditorFrame parentFrame;
+    public FileMenuListener(TextEditorFrame parentFrame) {
+        //this.fontChooser = fontChooser;
+        this.parentFrame = parentFrame;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         if ("New".equals(command)) {
             Text text = new Text();
-            textEditorFrame.setTextArea("");
+            TextEditorFrame.setTextArea("");
             System.out.println("New menu item clicked");
         } else if ("Open".equals(command)) {
             String newText = openFile();
-            textEditorFrame.setTextArea(newText);
+            TextEditorFrame.setTextArea(newText);
             System.out.println("Open menu item clicked");
-        } else if ("Save".equals(command)) {
-            Text text = textEditorFrame.getText();
-            saveFile(text);
+        } else if("Save".equals(command)) {
             System.out.println("Save menu item clicked");
+        } else if ("Save as".equals(command)) {
+            Text text = TextEditorFrame.getText();
+            saveFile(text);
+            System.out.println("Save As menu item clicked");
         } else if ("Exit".equals(command)) {
             exitApplication();
             System.out.println("Exit menu item clicked");
+        } else if("Font".equals(command)) {
+            FontChooser fontChooser = new FontChooser(parentFrame);
+            System.out.println("Font menu item clicked");
         }
+    }
+
+    private void chooseFont() {
+
     }
 
     private void exitApplication() {
@@ -41,12 +56,10 @@ public class FileMenuListener implements ActionListener {
                 String text = txt.getText();
                 writer.write(text);
                 writer.close();
-                JOptionPane pane = new JOptionPane("File saved successfully!");
+                JOptionPane.showMessageDialog(null,"File saved successfully!");
             } catch (IOException e) {
                 e.printStackTrace();
-                JOptionPane pane = new JOptionPane();
                 JOptionPane.showMessageDialog(null, "Error saving file.", "Error", JOptionPane.ERROR_MESSAGE);
-
             }
             System.out.println(file);
         }
@@ -64,13 +77,12 @@ public class FileMenuListener implements ActionListener {
                 while((line = reader.readLine()) != null) {
                     content.append(line).append("\n");
                 }
-                String fileContent = content.toString();
-
-                return fileContent;
+                JOptionPane.showMessageDialog(null,"File opened successfully!");
+                return content.toString();
             } catch (IOException e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null,"couldn't open file");
             }
-
         }
         return "";
     }

@@ -2,10 +2,9 @@ package com.texteditor;
 import javax.swing.*;
 import java.awt.*;
 
-public class textEditorFrame extends JFrame {
+public class TextEditorFrame extends JFrame {
     private static Text textArea;
-    private final JMenuBar menuBar;
-    public textEditorFrame() {
+    public TextEditorFrame() {
         setTitle("Super Text Editor 2000");
         setSize(600,800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,7 +15,7 @@ public class textEditorFrame extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         add(scrollPane,BorderLayout.CENTER);
 
-        menuBar = new MenuBar();
+        JMenuBar menuBar = new MenuBar(this);
         setJMenuBar(menuBar);
         setVisible(true);
     }
@@ -26,10 +25,15 @@ public class textEditorFrame extends JFrame {
     }
 
     public static void setTextArea(String newText) {
-        textEditorFrame.textArea.setText(newText);
+        TextEditorFrame.textArea.setText(newText);
+        textArea.repaint();
+    }
+    public static void setTextArea(Text newText) {
+        textArea = newText;
         textArea.repaint();
     }
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(textEditorFrame::new);
+        SwingUtilities.invokeLater(TextEditorFrame::new);
     }
+
 }
