@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class MenuBar extends JMenuBar {
     private TextEditorFrame frame;
+    private FileChooser fileChooser;
     public MenuBar(TextEditorFrame frame) {
         this.frame = frame;
         setBackground(Color.DARK_GRAY);

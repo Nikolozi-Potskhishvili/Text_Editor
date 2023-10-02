@@ -33,7 +33,12 @@ public class FileMenuListener implements ActionListener {
             exitApplication();
             System.out.println("Exit menu item clicked");
         } else if("Font".equals(command)) {
-            FontChooser fontChooser = new FontChooser(parentFrame);
+            if(fontChooser == null) {
+                fontChooser = new FontChooser(parentFrame);
+            } else {
+                fontChooser.setVisible(true);
+            }
+
             System.out.println("Font menu item clicked");
         }
     }

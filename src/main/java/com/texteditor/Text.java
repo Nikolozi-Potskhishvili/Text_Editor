@@ -14,8 +14,9 @@ public class Text extends JTextArea {
     public void changeFont(Font font) {
         setFont(font);
     }
-
     public void setFontSize(int size) {
-        setFontSize(size);
+        Font currentFont = getFont();
+        Font newFont = new Font(currentFont.getFontName(), currentFont.getStyle(), size);
+        setFont(newFont);
     }
 }

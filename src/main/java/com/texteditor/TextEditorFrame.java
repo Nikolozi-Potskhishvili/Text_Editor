@@ -28,8 +28,10 @@ public class TextEditorFrame extends JFrame {
         TextEditorFrame.textArea.setText(newText);
         textArea.repaint();
     }
-    public static void setTextArea(Text newText) {
-        textArea = newText;
+    public static void setTextProperties(Font font,Color color) {
+        textArea.setFont(font);
+        textArea.setForeground(color);
+        System.out.println("12321312");
         textArea.repaint();
     }
     public static void main(String[] args) {

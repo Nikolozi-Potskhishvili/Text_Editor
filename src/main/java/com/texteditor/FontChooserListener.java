@@ -15,12 +15,8 @@ public class FontChooserListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if("Ok".equals(command)) {
-            Text text = TextEditorFrame.getText();
-            text.setFont(fontChooser.getFont());
-            text.setForeground(fontChooser.getForeground());
-            TextEditorFrame.setTextArea(text);
-            
+        if("OK".equals(command)) {
+            TextEditorFrame.setTextProperties(fontChooser.getSelectedFont(),fontChooser.getSelectedColor());
             fontChooser.dispose();
         } else if ("Cancel".equals(command)) {
             fontChooser.dispose();

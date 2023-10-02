@@ -47,15 +47,37 @@ public class FontChooser extends JDialog {
                 }
             }
         });
+
+        fontComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sampleText.setFont(getSelectedFont());
+            }
+        });
+
+        sizeComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sampleText.setFont(getSelectedFont());
+            }
+        });
+
         okButton.addActionListener(fontChooserListener);
         cancelButton.addActionListener(fontChooserListener);
-        //colorButton.addActionListener(fontChooserListener);
-
         add(okButton);
         add(cancelButton);
 
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setVisible(true);
+    }
+
+
+    public void setSampleTextFont(Font font) {
+        sampleText.setFont(font);
+    }
+
+    public int getFontSize() {
+        return (int) sizeComboBox.getSelectedItem();
     }
 
     public Font getSelectedFont() {
